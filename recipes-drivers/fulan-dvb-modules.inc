@@ -25,9 +25,7 @@ PTI_NP_PATH ?= "/data/pti_np"
 FILESEXTRAPATHS_prepend := "${THISDIR}/fulan-dvb-modules:"
 
 SRC_URI = " \
-    git://github.com/Taapat/driver.git;protocol=git \
-    file://aotom_spark_procfs_tap.patch;patch=1 \
-    file://enable_pti_np.patch;patch=1 \
+    git://github.com/MastaG/fulan-dvb-drivers.git;protocol=git \
     file://ddbootup \
     file://sh4booster \
     file://modules.conf \
@@ -70,12 +68,12 @@ do_configure_prepend () {
     if [ -L multicom ]; then
         rm multicom 
     fi
-    ln -s ${S}/include/stmfb-3.1_stm24_0104 ${S}/include/stmfb
-    ln -s ${S}/include/player2_191 ${S}/include/player2
-    ln -s ${S}/multicom-3.2.4/include ${S}/include/multicom
-    ln -s ${S}/player2_191 ${S}/player2
-    ln -s ${S}/multicom-3.2.4 ${S}/multicom
-    ln -s ${S}/stgfb/stmfb-3.1_stm24_0104 ${S}/stgfb/stmfb
+    ln -sf ${S}/include/stmfb-3.1_stm24_0104 ${S}/include/stmfb
+    ln -sf ${S}/include/player2_191 ${S}/include/player2
+    ln -sf ${S}/multicom-3.2.4/include ${S}/include/multicom
+    ln -sf ${S}/player2_191 ${S}/player2
+    ln -sf ${S}/multicom-3.2.4 ${S}/multicom
+    ln -sf ${S}/stgfb/stmfb-3.1_stm24_0104 ${S}/stgfb/stmfb
     rm -f .config 
     printf "export CONFIG_PLAYER_191=y\nexport CONFIG_MULTICOM324=y\n" > .config
     export KERNEL_LOCATION="${STAGING_KERNEL_DIR}"
@@ -127,9 +125,11 @@ do_install() {
     install -d ${D}/${includedir}/
     install -m 644 multicom/include/mme.h ${D}/${includedir}
     install -m 644 include/player2/JPEG_VideoTransformerTypes.h ${D}/${includedir}
+    install -m 644 include/player2/JPEG_TransformerTypes.h ${D}/${includedir}
     install -m 644 include/player2/JPEGDECHW_VideoTransformerTypes.h ${D}/${includedir}
     install -m 644 include/player2/PNGDecode_interface.h ${D}/${includedir}
     install -m 644 include/player2/RLEDecode_interface.h ${D}/${includedir}
+    install -m 644 player2/components/include/stddefs.h ${D}/${includedir}
 
     #install modutils config
     install -d ${D}/${sysconfdir}/modules-load.d
