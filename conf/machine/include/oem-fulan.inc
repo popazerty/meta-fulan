@@ -22,6 +22,7 @@ PREFERRED_PROVIDER_virtual/kernel = "linux-fulan"
 PREFERRED_VERSION_linux-libc-headers = "2.6.32"
 PREFERRED_VERSION_directfb = "1.7.7"
 PREFERRED_VERSION_rt8812au = "4.3.14"
+PREFERRED_VERSION_samba = "3.%"
 
 PREFERRED_PROVIDER_gstreamer1.0-plugins-good = "libeplayer3"
 PREFERRED_PROVIDER_gstreamer1.0-plugins-ugly = "libeplayer3"
@@ -36,7 +37,7 @@ SERIAL_CONSOLE = "115200 ttyAS0"
 DVBPROVIDER = "kernel"
 
 OPENPLI_FEATURES = "usbconsole"
-MACHINE_FEATURES += "ext2 serial wlan dvb-c hdmicec 3dtv switchoff textlcd fulan singlecore directfb sdl sh4booster legacykernel"
+MACHINE_FEATURES += "ext2 serial wlan dvb-c hdmicec 3dtv switchoff textlcd fulan singlecore directfb sdl sh4booster legacykernel legacyrt"
 DISTRO_FEATURES_remove = "x11 wayland"
 
 KERNEL_IMAGETYPE = "uImage"
@@ -132,7 +133,6 @@ MACHINE_EXTRA_RRECOMMENDS = " \
     rt8723bs \
     rt8812au \
     rtl8192eu \
-    rt7777-legacy \
     ntfs-3g \
     "
 
